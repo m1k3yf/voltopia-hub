@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Voltopia</title>
+<meta name="description" content="Voltopia: The Keeper's Relic — a storybook adventure set in the real Volturara Irpina. Dev hub.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@400;500;600&display=swap">
+<style>
+:root{--zenith:#1E4B47;--shadow:#24413C;--deep:#16332F;--ember:#E8933F;--apricot:#F2B368;--cream:#F2E6C2;--haze:#8FB4AC;--ridge:#3A5E52;
+ --display:'Fraunces',Georgia,serif;--body:'Archivo',-apple-system,Helvetica,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--zenith);color:var(--cream);font-family:var(--body);line-height:1.5}
+a{color:var(--apricot)}h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--apricot);font-weight:600;margin:0 0 14px}
+header{background:linear-gradient(180deg,var(--deep),var(--zenith) 60%,#6d5a3a 92%,var(--ember));text-align:center;padding:84px 24px 0;position:relative;overflow:hidden}
+header h1{font-size:clamp(56px,11vw,120px);font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1}
+header .sub{font-family:var(--display);font-style:italic;color:var(--apricot);font-size:clamp(17px,2.4vw,23px);margin-top:14px}
+header .lede{color:var(--haze);max-width:52ch;margin:22px auto 0;font-size:17px}
+.chip{display:inline-block;margin-top:28px;padding:8px 16px;border:1px solid var(--apricot);color:var(--apricot);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.ridges{display:block;width:100%;margin-top:40px}
+main{max-width:1080px;margin:0 auto;padding:24px}
+section{padding:64px 0;border-bottom:1px solid rgba(143,180,172,.18)}section:last-of-type{border:0}
+section h2{font-size:clamp(30px,4.6vw,46px);font-weight:600;color:var(--cream)}
+.sub2{color:var(--haze);max-width:60ch;margin:14px 0 0;font-size:16px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:34px}
+figure{margin:0;background:var(--shadow);display:flex;flex-direction:column}
+figure img{width:100%;height:230px;object-fit:cover;display:block}
+figcaption{padding:14px 16px;font-size:14px;color:var(--haze)}figcaption b{display:block;font-family:var(--display);font-size:17px;color:var(--cream);font-weight:600;margin-bottom:3px}
+.play{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:34px}
+.card{background:var(--shadow);padding:26px;border-top:4px solid var(--ember)}.card.soon{border-top-color:var(--ridge)}
+.card h3{font-size:22px;font-weight:600;margin-bottom:8px}.card p{margin:0;color:var(--haze);font-size:14.5px}
+.card .btn{display:inline-block;margin-top:16px;padding:10px 18px;background:var(--ember);color:var(--deep);text-decoration:none;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.card .btn.dis{background:transparent;color:var(--haze);border:1px solid var(--ridge);pointer-events:none}
+.log{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-direction:column;gap:14px}
+.log li{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:baseline;background:var(--shadow);padding:16px 20px;border-left:3px solid var(--apricot)}
+.log time{font-family:var(--display);font-weight:600;color:var(--apricot);font-size:15px;font-variant-numeric:tabular-nums}
+.log span{color:var(--haze);font-size:15px}.log span b{color:var(--cream);font-weight:600}
+footer{text-align:center;padding:60px 24px 80px;font-family:var(--display);font-style:italic;color:var(--apricot);font-size:19px}
+</style></head><body>
+<header>
+  <h1>Voltopia</h1>
+  <div class="sub">The Keeper&rsquo;s Relic</div>
+  <p class="lede">A storybook adventure set in the <em>real</em> Volturara Irpina &mdash; every street, piazza and bell tower where it actually stands, painted in teal and amber dusk.</p>
+  <span class="chip">In development &middot; dev hub</span>
+  <svg class="ridges" viewBox="0 0 1200 170" aria-hidden="true"><path d="M0,110 L180,44 330,100 520,20 700,94 880,38 1050,86 1200,50 1200,170 0,170Z" fill="#3A5E52"/><path d="M0,150 L240,94 430,136 640,82 840,132 1040,94 1200,122 1200,170 0,170Z" fill="#1E4B47"/><rect x="588" y="42" width="24" height="82" fill="#1E4B47"/><path d="M584,42 L600,16 616,42Z" fill="#1E4B47"/></svg>
+</header>
+<main>
+<section>
+  <p class="eyebrow">La visione</p><h2>The town, as a painting.</h2>
+  <p class="sub2">Concept art sets the north star: golden-hour piazzas, glowing windows, the Terminio ridges in layered teal.</p>
+  <div class="gallery">
+    <figure><img src="img/concept_piazza.jpg" alt="Piazza Roma festival concept"><figcaption><b>Piazza Roma</b>Festival night under the campanile.</figcaption></figure>
+    <figure><img src="img/concept_core.jpg" alt="Volturara at dusk concept"><figcaption><b>Volturara Core</b>The town glowing in its mountain bowl.</figcaption></figure>
+    <figure><img src="img/concept_valley.jpg" alt="Valley concept"><figcaption><b>The valley</b>Rolling fields and chestnut hills.</figcaption></figure>
+    <figure><img src="img/concept_mcmany.jpg" alt="McMany Bar concept"><figcaption><b>McMany Bar</b>The cozy heart of the evening.</figcaption></figure>
+  </div>
+</section>
+<section>
+  <p class="eyebrow">Dove siamo</p><h2>Built from the real map.</h2>
+  <p class="sub2">The whole town streams in as real 3D geography; buildings are generated from surveyed footprints &mdash; here, a house in Freddano and a modern neighbour, fresh from the building factory.</p>
+  <div class="gallery">
+    <figure><img src="img/blender_house414.jpg" alt="Generated house mesh"><figcaption><b>Via A. Di Meo</b>Stone walls, green shutters, terracotta gable &mdash; generated from its footprint.</figcaption></figure>
+    <figure><img src="img/blender_modern.jpg" alt="Generated modern house mesh"><figcaption><b>Post-&rsquo;80 Irpinia</b>Roller shutters and concrete balconies, the town&rsquo;s other era.</figcaption></figure>
+  </div>
+</section>
+<section>
+  <p class="eyebrow">Gioca</p><h2>Play it.</h2>
+  <div class="play">
+    <div class="card soon"><h3>Mac build</h3><p>Downloadable playtest build. First one lands here as soon as the streets are rolled out.</p><a class="btn dis">Coming soon</a></div>
+    <div class="card soon"><h3>Windows build</h3><p>Following the Mac build.</p><a class="btn dis">Coming soon</a></div>
+    <div class="card"><h3>Follow the build</h3><p>This page updates as the game grows. Bookmark it.</p><a class="btn" href="#log">Dev log &darr;</a></div>
+  </div>
+</section>
+<section id="log">
+  <p class="eyebrow">Diario</p><h2>Dev log.</h2>
+  <ul class="log">
+    <li><time>Oct 2026</time><span><b>Building factory.</b> Real meshes &mdash; recessed windows, shutters, true gabled roofs &mdash; generated from footprint data. Project moves to GitHub.</span></li>
+    <li><time>Aug 2026</time><span><b>Three districts walkable.</b> Piazza Roma, the McMany piazza and Freddano rebuilt crisp over the real town &mdash; and signed off on foot.</span></li>
+    <li><time>Jul 2026</time><span><b>The real Volturara.</b> Google&rsquo;s 3D scan of the town streams into the game, georeferenced to the centimetre. The drivable Fiat Panda works.</span></li>
+    <li><time>Jul 2026</time><span><b>Piazza Roma recognisable.</b> Church, campanile and Il Tiglio placed from the real map; the relic codex comes alive.</span></li>
+  </ul>
+</section>
+</main>
+<footer>Ci vediamo in piazza.</footer>
+</body></html>
