@@ -3,7 +3,7 @@
 <title>Voltopia</title>
 <meta name="description" content="Voltopia: The Keeper's Relic — a storybook adventure set in the real Volturara Irpina. Dev hub.">
 <meta name="theme-color" content="#1E4B47">
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/m1k3yf/voltopia-hub/main/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Voltopia">
 <meta property="og:title" content="Voltopia: The Keeper’s Relic">
 <meta property="og:description" content="A storybook adventure set in the real Volturara Irpina. Follow the build.">
-<meta property="og:url" content="https://voltopia-hub-mikeys-projects-7a636aed.vercel.app/">
+<meta property="og:url" content="https://m1k3yf.github.io/voltopia-hub/">
 <meta property="og:image" content="https://raw.githubusercontent.com/m1k3yf/voltopia-hub/main/og.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -54,7 +54,7 @@ footer{text-align:center;padding:60px 24px 80px;font-family:var(--display);font-
   <h1>Voltopia</h1>
   <div class="sub">The Keeper&rsquo;s Relic</div>
   <p class="lede">A storybook adventure set in the <em>real</em> Volturara Irpina &mdash; built from real map data, with a teal-and-amber storybook look in progress.</p>
-  <span class="chip">In development &middot; dev hub</span>
+  <a class="chip" href="play/" style="text-decoration:none">Walk the town &rarr;</a>
   <svg class="ridges" viewBox="0 0 1200 170" aria-hidden="true"><path d="M0,110 L180,44 330,100 520,20 700,94 880,38 1050,86 1200,50 1200,170 0,170Z" fill="#3A5E52"/><path d="M0,150 L240,94 430,136 640,82 840,132 1040,94 1200,122 1200,170 0,170Z" fill="#1E4B47"/><rect x="588" y="42" width="24" height="82" fill="#1E4B47"/><path d="M584,42 L600,16 616,42Z" fill="#1E4B47"/></svg>
 </header>
 <main>
@@ -88,13 +88,14 @@ footer{text-align:center;padding:60px 24px 80px;font-family:var(--display);font-
   <p class="eyebrow">Gioca</p><h2>Play it.</h2>
   <div class="play">
     <div class="card soon"><h3>Mac build</h3><p>A playtest build for Mac is planned once more of the town is rebuilt.</p><a class="btn dis">Coming soon</a></div>
-    <div class="card soon"><h3>Play in a browser</h3><p>We&rsquo;re working out the best way for friends to try it. Nothing to download yet.</p><a class="btn dis">Not yet</a></div>
+    <div class="card"><h3>Walk it now</h3><p>An early prototype that runs in your browser. Works best on a computer.</p><a class="btn" href="play/">Enter the piazza</a></div>
     <div class="card"><h3>Follow the build</h3><p>This page updates as the game grows. Bookmark it.</p><a class="btn" href="#log">Dev log &darr;</a></div>
   </div>
 </section>
 <section id="log">
   <p class="eyebrow">Diario</p><h2>Dev log.</h2>
   <ul class="log">
+    <li><time>Oct 2026</time><span><b>Playable in a browser.</b> A first walkable prototype of the town at dusk, with open terrain data. Open it from any device.</span></li>
     <li><time>Oct 2026</time><span><b>The whole town, previewed.</b> 645 buildings generated with row houses and glowing windows, plus a new Panda, chestnut trees, church, bell tower and festa lights. Built in Blender; moving into the game next.</span></li>
     <li><time>Oct 2026</time><span><b>Building factory.</b> Real meshes &mdash; recessed windows, shutters, true gabled roofs &mdash; generated from footprint data. Project moves to GitHub.</span></li>
     <li><time>Aug 2026</time><span><b>Three districts built.</b> Piazza Roma, the McMany piazza and Freddano rebuilt crisp over the real town. Piazza Roma has been walked and approved; the other two are awaiting their first walk.</span></li>
@@ -103,5 +104,5 @@ footer{text-align:center;padding:60px 24px 80px;font-family:var(--display);font-
   </ul>
 </section>
 </main>
-<footer>Ci vediamo in piazza.</footer>
+<footer>Ci vediamo in piazza.<div style="font-family:Archivo,sans-serif;font-style:normal;font-size:11px;color:#8FB4AC;margin-top:14px">Map data &copy; OpenStreetMap contributors. Building footprints &copy; Microsoft (ODbL). Terrain: Copernicus GLO-30 &copy; ESA/DLR.</div></footer>
 </body></html>
