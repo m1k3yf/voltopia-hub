@@ -1,0 +1,113 @@
+{
+  "_about": "Data for Dragon Mode (play/dragon.js). Titles, card text, colours, counts and positions can all be changed here without touching code. Positions are game metres: x east and y north of Piazza Roma. Bearings are compass degrees: 0 north, 90 east. Card text and treasure names were copied from the project's history research (Saved/dragon_history.json in the game repo); \"confidence\" is that research's own rating. No personal names or nicknames of brigands appear anywhere: keep it that way.",
+
+  "nightSeconds": 90,
+
+  "raiders": {
+    "name": "Briganti",
+    "_note": "Generic, unnamed brigands. They never attack the dragon; a singed brigand jumps, drops what they carry and runs. Dress follows the local records: low round dark felt hat with a floppy brim, long dark cloak, neckerchief, ash-grey trousers, a short carbine or an axe on the back as costume only, sacks and money pouches, and now and then a stolen sheep under an arm."
+  },
+
+  "lair": {
+    "x": 430,
+    "y": -195,
+    "facingDeg": 295,
+    "bearingDeg": null,
+    "realBearingDeg": 89,
+    "realDistanceM": 1558,
+    "note": "A stand-in. The real Bocca del Dragone lies about 1.5 km further east, at the foot of Monte Costa: 1,558 m from the piazza on a bearing of 89 degrees, outside this map. This cave sits on the high ground at the map's eastern edge and looks west toward the town.",
+    "_howto": "x and y place the cave; facingDeg is the compass bearing its mouth looks toward (null means straight downhill). Set x and y to null to let the game pick the highest slope inside the flying area, or within 25 degrees of bearingDeg (as seen from Piazza Roma) if that is given. realBearingDeg and realDistanceM are for reference only."
+  },
+
+  "treasures": [
+    { "id": "ducati",  "name": "I ducati dei viatecali",    "english": "the carriers' strongbox",          "kind": "chest", "at": [9, -4],     "verified": true, "confidence": "medium-high" },
+    { "id": "tiglio",  "name": "Il tesoro sotto il tiglio", "english": "the chest under the lime tree",    "kind": "chest", "at": [-15, 1.5],  "verified": true, "confidence": "legend",
+      "_note": "A local folk tale. The research places the tale at the Sorgente dell'Orso, under the middle of three lime trees; here it stands by the Tiglio in the piazza." },
+    { "id": "greggi",  "name": "Le greggi",                 "english": "the flocks",                       "kind": "sheep", "at": [40, 205],   "verified": true, "confidence": "medium" },
+    { "id": "scrigno", "name": "L'ultimo scrigno",          "english": "the last chest, kept at the cave", "kind": "chest", "at": "lair",      "verified": true, "confidence": "legend" }
+  ],
+
+  "fallbackCard": {
+    "_note": "Shown for any night that has no \"history\" of its own.",
+    "history": [
+      "Briganti. Armed bands lived in the mountains of the old Kingdom of Naples, robbing travellers on the passes.",
+      "Outlaws to some, rebels to others."
+    ],
+    "verified": true
+  },
+
+  "nights": [
+    {
+      "title": "La comitiva di Voltorara",
+      "date": "1805",
+      "history": [
+        "Armed bands rob Volturara's carriers on the roads to Atripalda and Montella.",
+        "Soldiers storm their cave on the mountain: one man, a full larder, and no sign of the rest."
+      ],
+      "verified": true,
+      "confidence": "medium-high",
+      "look": { "cloak": "#4a3a2c", "hat": "#1b1714", "legs": "#8e908d", "neckerchief": "#c8372d", "banner": "#c8372d", "light": "torch", "lightColor": "#ff9a3c" },
+      "bands": 4,
+      "bandSize": [3, 4],
+      "speed": 7,
+      "approach": { "fromDeg": 0, "spreadDeg": 40, "_note": "up the valley road from the north" }
+    },
+    {
+      "title": "La notte delle cinque ore",
+      "date": "fine ottobre 1809",
+      "history": [
+        "The French decade. A large band comes down on Volturara at the end of October.",
+        "The townspeople hold them off for five hours, and the band turns back."
+      ],
+      "verified": true,
+      "confidence": "medium",
+      "look": { "cloak": "#3b3f44", "hat": "#17181a", "legs": "#8e908d", "neckerchief": "#e0a62e", "banner": "#e0a62e", "light": "torch", "lightColor": "#ff8a2c" },
+      "bands": 5,
+      "bandSize": [4, 5],
+      "speed": 8,
+      "approach": { "fromDeg": 185, "spreadDeg": 50, "_note": "down out of the woods to the south" }
+    },
+    {
+      "title": "La grotta della Costa",
+      "date": "1861",
+      "history": [
+        "After unification, disbanded soldiers and wanted men take to the mountains around the town.",
+        "Local memory says a landowner was held for ransom in a cave on the Costa."
+      ],
+      "verified": true,
+      "confidence": "medium-low",
+      "look": { "cloak": "#5a4a3a", "hat": "#1b1714", "legs": "#8e908d", "neckerchief": "#7fae5a", "banner": "#7fae5a", "light": "lantern", "lightColor": "#ffd27a" },
+      "bands": 6,
+      "bandSize": [4, 5],
+      "speed": 8.5,
+      "approach": { "fromDeg": 125, "spreadDeg": 45, "_note": "from the Costa, to the south-east" }
+    },
+    {
+      "title": "La banda dei boschi di Montella",
+      "date": "9 settembre 1864",
+      "history": [
+        "Two riders from a mountain band carry a man off from his farmhouse into the Montella woods.",
+        "He comes home two months later, on payment of 2,975 lire."
+      ],
+      "verified": true,
+      "confidence": "medium-high",
+      "look": { "cloak": "#2c2f3a", "hat": "#141518", "legs": "#8e908d", "neckerchief": "#e6eef2", "banner": "#e6eef2", "light": "lantern", "lightColor": "#ffc86a" },
+      "bands": 7,
+      "bandSize": [4, 6],
+      "speed": 9.5,
+      "approach": { "fromDeg": 60, "spreadDeg": 150, "_note": "from most sides at once" }
+    }
+  ],
+
+  "finale": {
+    "_note": "The closing card, shown after the last night's dawn tally. Not a raid: the town lights its windows.",
+    "title": "L'ultima banda",
+    "date": "agosto 1873",
+    "history": [
+      "Word comes that the last great band has been broken at Flumeri.",
+      "Volturara lights its windows and the town band plays through the streets."
+    ],
+    "verified": true,
+    "confidence": "medium-high"
+  }
+}

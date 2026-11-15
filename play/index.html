@@ -20,8 +20,10 @@ canvas{position:fixed;inset:0;display:block}
 #intro .s{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--apr);font-size:clamp(17px,3vw,22px);margin-top:10px}
 #intro p{color:var(--haze);max-width:44ch;margin:20px 0 0;line-height:1.5;font-size:15px}
 #bar{width:min(300px,70vw);height:4px;background:rgba(242,230,194,.2);margin-top:28px}#fill{height:100%;width:0;background:var(--apr);transition:width .2s}
-#go{margin-top:26px;padding:14px 32px;border:0;background:var(--ember);color:var(--deep);font:600 14px 'Archivo',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;visibility:hidden}
-#go:focus-visible,.tp:focus-visible{outline:2px solid var(--cream);outline-offset:2px}
+#gos{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#go,#goD{padding:14px 32px;border:0;background:var(--ember);color:var(--deep);font:600 14px 'Archivo',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;visibility:hidden}
+#goD{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px var(--apr)}
+#go:focus-visible,#goD:focus-visible,.tp:focus-visible{outline:2px solid var(--cream);outline-offset:2px}
 #hud{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;right:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;z-index:3}
 .tp{padding:9px 13px;border:1px solid rgba(242,179,104,.65);background:rgba(22,51,47,.72);color:var(--cream);font:600 12px 'Archivo',sans-serif;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 #place{margin-left:auto;font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--apr);font-size:16px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
@@ -35,8 +37,8 @@ canvas{position:fixed;inset:0;display:block}
 </head><body>
 <div id="intro"><h1>Voltopia</h1><div class="s">The Keeper&rsquo;s Relic</div>
 <p>An early prototype: walk a storybook Volturara Irpina at dusk. Buildings are generated from real map data, not yet the true facades.</p>
-<div id="bar"><div id="fill"></div></div><button id="go">Enter the piazza</button></div>
-<div id="hud"><button class="tp" data-p="piazza">Piazza Roma</button><button class="tp" data-p="mcmany">McMany</button><button class="tp" data-p="freddano">Freddano</button><span id="place"></span></div>
+<div id="bar"><div id="fill"></div></div><div id="gos"><button id="go">Enter the piazza</button><button id="goD" hidden>Dragon mode</button></div></div>
+<div id="hud"><button class="tp" data-p="piazza">Piazza Roma</button><button class="tp" data-p="mcmany">McMany</button><button class="tp" data-p="freddano">Freddano</button><button class="tp" id="dm" hidden>Dragon mode</button><span id="place"></span></div>
 <div id="help">Click to look around. WASD or arrows to walk, Shift to run, Esc to release.</div>
 <div id="cred">Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors. Building footprints &copy; Microsoft (ODbL). Terrain: Copernicus GLO-30 &copy; ESA/DLR.</div>
 <div id="stick"><div id="knob"></div></div>
@@ -101,11 +103,11 @@ function surface(x,y){let h=H(x,y);if(x>-31&&x<33&&y>-14&&y<16)h=Math.max(h,.42)
 function free(x,y,r=.45){for(const s of data.solids){const dx=x-s[0],dy=y-s[1],c=Math.cos(-s[4]),n=Math.sin(-s[4]),lx=dx*c-dy*n,ly=dx*n+dy*c;if(Math.abs(lx)<s[2]+r&&Math.abs(ly)<s[3]+r)return false}return true}
 function unstick(){for(let r=0;r<40&&!free(pos.x,pos.y);r+=1){for(let a=0;a<12;a++){const x=pos.x+Math.cos(a*.52)*r,y=pos.y+Math.sin(a*.52)*r;if(free(x,y)){pos.set(x,y);return}}}}
 function tp(n){const q=places[n];pos.set(q.p[0],q.p[1]);yaw=q.yaw;pitch=.03;unstick();eye=surface(pos.x,pos.y)+1.7;}
-document.querySelectorAll('.tp').forEach(b=>b.onclick=e=>{e.stopPropagation();tp(b.dataset.p);b.blur()});
+document.querySelectorAll('.tp[data-p]').forEach(b=>b.onclick=e=>{e.stopPropagation();tp(b.dataset.p);b.blur()});
 addEventListener('keydown',e=>keys[e.code]=true);addEventListener('keyup',e=>keys[e.code]=false);
-const el=renderer.domElement;let drag=null,stick=null;const mv={x:0,y:0};
+const el=renderer.domElement;let drag=null,stick=null,D=null;const mv={x:0,y:0};
 function look(dx,dy,k=.0024){yaw-=dx*k;pitch=Math.max(-1.3,Math.min(1.3,pitch-dy*k))}
-el.addEventListener('click',()=>{if(!touch&&document.pointerLockElement!==el&&document.getElementById('intro').classList.contains('gone'))el.requestPointerLock?.()});
+el.addEventListener('click',()=>{if(!touch&&!D?.active&&document.pointerLockElement!==el&&document.getElementById('intro').classList.contains('gone'))el.requestPointerLock?.()});
 addEventListener('mousemove',e=>{if(document.pointerLockElement===el)look(e.movementX,e.movementY)});
 const stk=document.getElementById('stick'),knob=document.getElementById('knob');
 el.addEventListener('pointerdown',e=>{if(touch&&!drag)drag={id:e.pointerId,x:e.clientX,y:e.clientY}});
@@ -116,19 +118,22 @@ stk.addEventListener('pointerdown',e=>{stick={id:e.pointerId};e.stopPropagation(
 addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer?.setSize(innerWidth,innerHeight)});
 const placeEl=document.getElementById('place');const clock=new THREE.Clock();let bob=0;
 function frame(){const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
+ if(D?.active)D.update(dt,t);else{
  let f=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0)-mv.y,s=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0)+mv.x;
  const sp=(keys.ShiftLeft||keys.ShiftRight)?7.5:3.6,L=Math.hypot(f,s);
  if(L>.05){const k=sp*dt*Math.min(1,L)/L,sy=Math.sin(yaw),cy=Math.cos(yaw),dx=(-sy*f+cy*s)*k,dz=(-cy*f-sy*s)*k;   // three coords
   const nx=pos.x+dx,ny=pos.y-dz;if(free(nx,pos.y))pos.x=nx;if(free(pos.x,ny))pos.y=ny;bob+=dt*sp*2}
  const R=data.radius+150,d=Math.hypot(pos.x-60,pos.y);if(d>R){pos.x=60+(pos.x-60)*R/d;pos.y=pos.y*R/d}
- eye+=(surface(pos.x,pos.y)+1.7-eye)*Math.min(1,dt*9);cam.position.set(pos.x,eye+Math.sin(bob)*.035,-pos.y);cam.rotation.set(pitch,yaw,0);
+ eye+=(surface(pos.x,pos.y)+1.7-eye)*Math.min(1,dt*9);cam.position.set(pos.x,eye+Math.sin(bob)*.035,-pos.y);cam.rotation.set(pitch,yaw,0)}
  const a=fg.attributes.position;for(let i=0;i<FN;i++){const q=fs[i]+t*.4;a.array[i*3]+=Math.sin(q*1.3)*dt*.25;a.array[i*3+1]+=Math.cos(q*.9)*dt*.12;a.array[i*3+2]+=Math.cos(q*1.1)*dt*.25}a.needsUpdate=true;
  const near=Object.values(places).reduce((b,q)=>{const m=Math.hypot(pos.x-q.p[0],pos.y-q.p[1]);return m<(b.m)?{m,n:q.name}:b},{m:90,n:''});placeEl.textContent=near.n;
  composer?composer.render():renderer.render(scene,cam);requestAnimationFrame(frame)}
+// Dragon Mode lives in dragon.js; if it fails to load, walking is unaffected and its buttons stay hidden.
+D=await import('./dragon.js').then(m=>m.init({scene,cam,renderer,data,H,surface,keys,mv,touch,hi,sun,hemi:scene.children.find(o=>o.isHemisphereLight),town:town.scene})).catch(e=>(console.warn('Dragon mode unavailable',e),null));
 tp('piazza');
 if(hi){sun.shadow.autoUpdate=false;sun.shadow.needsUpdate=true}
 prog(1);const go=document.getElementById('go');go.style.visibility='visible';document.getElementById('bar').style.visibility='hidden';
-window.__v={pos,tp,set yaw(v){yaw=v},renderer};
+window.__v={pos,tp,set yaw(v){yaw=v},renderer,dragon:D};
 frame();
 go.onclick=()=>{document.getElementById('intro').classList.add('gone');if(!touch)el.requestPointerLock?.()};
 </script></body></html>
